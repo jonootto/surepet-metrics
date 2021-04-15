@@ -36,7 +36,7 @@ def wait(sleeptime,sleepstage):
         sleep(sleepstage)
         slept += sleepstage
         remaining = sleeptime - slept
-        print(str(remaining) + " until next")
+        print(str(remaining) + "s until next")
 
         
 
