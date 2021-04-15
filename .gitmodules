@@ -1,0 +1,6 @@
+[submodule "surepy"]
+	path = surepy
+	url = https://github.com/benleb/surepy.git
+[submodule "src"]
+	path = src
+	url = https://github.com/benleb/surepy.git

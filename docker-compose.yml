@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  surepet-metrics:
+    build: .
+    image: jonootto/surepet-metrics:latest
+    container_name: surepet-metrics
+    restart: unless-stopped
+    environment: 
+        SUREPY_TOKEN: $SUREPY_TOKEN
+        INFLUX_TOKEN: $INFLUX_TOKEN
+        ORG: $ORG
+        BUCKET: $BUCKET
+    #security_opt:
+    #  - seccomp:unconfined
