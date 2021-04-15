@@ -43,7 +43,10 @@ packages.urllib3.disable_warnings()
 influxtoken = environ.get("INFLUX_TOKEN")
 org = environ.get("ORG")
 bucket = environ.get("BUCKET")
-client = InfluxDBClient(url="https://192.168.1.254:8086", token=influxtoken, org=org, verify_ssl=False)
+hostUrl = environ.get("HOST_URL")
+
+print(hostUrl)
+client = InfluxDBClient(url= hostUrl, token=influxtoken, org=org, verify_ssl=False)
 write_api = client.write_api(write_options=SYNCHRONOUS)
 token = environ.get("SUREPY_TOKEN")
 
