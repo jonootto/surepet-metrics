@@ -10,5 +10,6 @@ services:
         INFLUX_TOKEN: $INFLUX_TOKEN
         ORG: $ORG
         BUCKET: $BUCKET
+        HOST_URL: $HOST_URL
     #security_opt:
     #  - seccomp:unconfined
