@@ -45,7 +45,6 @@ org = environ.get("ORG")
 bucket = environ.get("BUCKET")
 hostUrl = environ.get("HOST_URL")
 
-print(hostUrl)
 client = InfluxDBClient(url= hostUrl, token=influxtoken, org=org, verify_ssl=False)
 write_api = client.write_api(write_options=SYNCHRONOUS)
 token = environ.get("SUREPY_TOKEN")
