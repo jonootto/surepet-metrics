@@ -1,5 +1,4 @@
 import asyncio
-import json
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
 
@@ -10,9 +9,9 @@ from time import sleep
 from requests import packages
 
 from surepy import Surepy
-from surepy.entities import SurepyEntity
+#from surepy.entities import SurepyEntity
 from surepy.entities.devices import SurepyDevice
-from surepy.entities.pet import Pet
+#from surepy.entities.pet import Pet
 
 
 async def main():
@@ -39,8 +38,6 @@ def wait(sleeptime,sleepstage):
         print(str(remaining) + "s until next")
 
         
-
-
 
 packages.urllib3.disable_warnings()
 influxtoken = environ.get("INFLUX_TOKEN")
