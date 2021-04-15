@@ -21,14 +21,26 @@ async def main():
     return devices
 
 
-def timetowait():
-    delta = timedelta(minutes=10)
+def timetowait(minutes):
+    delta = timedelta(minutes=minutes)
     now = datetime.now()
     next_minute = (now + delta).replace(microsecond=0,second=0)
     wait_seconds = (next_minute - now)
     wait_seconds = int((wait_seconds).total_seconds())
     print("    " + str(wait_seconds)+"s until next")
     return(wait_seconds)
+
+def wait(sleeptime):
+    slept = 0
+    sleepstage = int(round(sleeptime/20))
+    for x in range(0,sleeptime,sleepstage):
+        sleep(sleepstage)
+        slept += sleepstage
+        remaining = sleeptime - slept
+        print(str(remaining) + " until next")
+
+        
+
 
 
 packages.urllib3.disable_warnings()
@@ -47,6 +59,4 @@ while True:
         p = Point("DeviceBattery").tag("Device Name",device.name).field("Battery",device.battery_level)
         write_api.write(bucket=bucket,org=org,record=p)
 
-    sleeptime = timetowait()
-    print(sleeptime)
-    sleep(sleeptime)
+    wait(timetowait(10))
