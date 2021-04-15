@@ -30,9 +30,8 @@ def timetowait(minutes):
     print("    " + str(wait_seconds)+"s until next")
     return(wait_seconds)
 
-def wait(sleeptime):
+def wait(sleeptime,sleepstage):
     slept = 0
-    sleepstage = int(round(sleeptime/20))
     for x in range(0,sleeptime,sleepstage):
         sleep(sleepstage)
         slept += sleepstage
@@ -59,4 +58,4 @@ while True:
         p = Point("DeviceBattery").tag("Device Name",device.name).field("Battery",device.battery_level)
         write_api.write(bucket=bucket,org=org,record=p)
 
-    wait(timetowait(10))
+    wait(timetowait(10),30)
