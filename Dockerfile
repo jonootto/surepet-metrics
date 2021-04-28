@@ -11,7 +11,7 @@ COPY src/ .
 RUN apt-get update && \
     apt-get install -y gcc && \
     pip install --upgrade -r requirements.txt && \
-    apt-get remove -y gcc && apt-get -y autoremove
+    apt-get purge -y gcc && apt-get -y autoremove
  
 # copy the content of the local src directory to the working directory
 
