@@ -1,4 +1,3 @@
 influxdb-client
 requests
 surepy
-ndg-httpsclient
