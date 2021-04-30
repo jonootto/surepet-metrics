@@ -1,5 +1,5 @@
 # set base image (host OS)
-FROM python:latest
+FROM python:slim
 
 # set the working directory in the container
 WORKDIR /code
@@ -8,7 +8,11 @@ WORKDIR /code
 COPY requirements.txt .
 COPY src/ .
 # install dependencies
-RUN pip install --upgrade -r requirements.txt
+RUN apt-get update && \
+     apt-get install -y gcc && \
+     pip install --upgrade -r requirements.txt && \
+     apt-get purge -y gcc && apt-get -y autoremove && \
+     rm -rf /var/lib/apt/lists/*
     
   
 # copy the content of the local src directory to the working directory
