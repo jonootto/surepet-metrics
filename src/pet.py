@@ -1,12 +1,11 @@
 import asyncio
-from influxdb_client import InfluxDBClient, Point
-from influxdb_client.client.write_api import SYNCHRONOUS
+from prometheus_client import Gauge, start_http_server
 
 from os import environ
 from typing import Dict, List
 from datetime import datetime, timedelta
 from time import sleep
-from requests import packages
+#from requests import packages
 
 from surepy import Surepy
 #from surepy.entities import SurepyEntity
@@ -39,22 +38,18 @@ def wait(sleeptime,sleepstage):
 
         
 
-packages.urllib3.disable_warnings()
-influxtoken = environ.get("INFLUX_TOKEN")
-org = environ.get("ORG")
-bucket = environ.get("BUCKET")
-hostUrl = environ.get("HOST_URL")
 
-client = InfluxDBClient(url= hostUrl, token=influxtoken, org=org, verify_ssl=False)
-write_api = client.write_api(write_options=SYNCHRONOUS)
+
 token = environ.get("SUREPY_TOKEN")
 
+start_http_server(6789)
+g = Gauge('surepy_battery_percent','Battery Level',['device'])
 while True:
     devices = asyncio.run(main())
-
     for device in devices:
+
+        g.labels(device=device.name).set(device.battery_level)
         print(device.name + " " + str(device.battery_level) + "%")
-        p = Point("DeviceBattery").tag("Device Name",device.name).field("Battery",device.battery_level)
-        write_api.write(bucket=bucket,org=org,record=p)
+
 
     wait(timetowait(10),30)
