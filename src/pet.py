@@ -2,7 +2,7 @@ import asyncio
 from prometheus_client import Gauge, start_http_server
 
 from os import environ
-from typing import Dict, List
+#from typing import Dict, List
 from datetime import datetime, timedelta
 from time import sleep
 #from requests import packages
