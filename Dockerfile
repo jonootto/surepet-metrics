@@ -6,6 +6,7 @@ WORKDIR /code
 
 # copy the dependencies file to the working directory
 COPY requirements.txt .
+COPY src/ .
 
 # install dependencies
 RUN apt-get update && \
